@@ -44,7 +44,9 @@ export default function SpotPrices() {
       .then((d: Snapshot) => {
         setSnap(d);
         setStatus("ok");
-        if (d.rows?.length) setSel(d.rows[0].item);
+        // 默认选有历史的品项（DDR4 16Gb 已回填），否则第一项
+        const preferred = d.rows?.find((r) => r.item === "DDR4 16Gb (2Gx8) 3200")?.item ?? d.rows?.[0]?.item;
+        if (preferred) setSel(preferred);
       })
       .catch(() => setStatus("error"));
   }, []);

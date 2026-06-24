@@ -14,7 +14,7 @@ export async function onRequestGet(context) {
     if (item) {
       const { results } = await db
         .prepare(
-          "SELECT date, session_avg, change_pct, trend FROM spot_prices WHERE item = ? ORDER BY date DESC LIMIT 60"
+          "SELECT date, session_avg, change_pct, trend FROM spot_prices WHERE item = ? ORDER BY date DESC LIMIT 180"
         )
         .bind(item)
         .all();
