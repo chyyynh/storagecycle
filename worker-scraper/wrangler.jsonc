@@ -1,0 +1,21 @@
+{
+	"name": "storage-cycle-scraper",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-06-24",
+	"compatibility_flags": ["nodejs_compat"],
+	"observability": {
+		"enabled": true,
+	},
+	// 每日 02:00 UTC 爬一次
+	"triggers": {
+		"crons": ["0 2 * * *"],
+	},
+	// 与 Pages 共用同一个 D1（Pages 读、本 Worker 写）
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "storage-cycle-prices",
+			"database_id": "53a2c9c7-82bf-4b60-848f-8e1d52cdfcb4",
+		},
+	],
+}
