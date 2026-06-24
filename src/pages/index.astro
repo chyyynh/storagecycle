@@ -7,6 +7,7 @@ import CycleArc from "@/components/CycleArc.astro";
 import CompanyCard from "@/components/CompanyCard.astro";
 import InflectionCard from "@/components/InflectionCard.astro";
 import PriceChart from "@/components/react/PriceChart.tsx";
+import SpotPrices from "@/components/react/SpotPrices.tsx";
 
 const chartDefs = [
   { symbol: "000660.KS", name: "SK海力士", color: "#5BC8E8" },
@@ -31,8 +32,6 @@ import {
   earningsTable,
   hbmMarket,
   industryValue,
-  spotPrices,
-  spotNote,
   calendar,
   micronPreview,
 } from "@/data/metrics";
@@ -299,19 +298,9 @@ const stars = (n: number) =>
           </div>
         </div>
 
-        <div class="mt-10 mb-3 text-[11px] uppercase tracking-wider text-[color:var(--color-ink-mute)]">现货价格走势 · 5/19 当周</div>
-        <Table
-          head={["产品", "4月高点", "5/12", "5/19", "周变化", "判断"]}
-          caption={spotNote}
-          rows={spotPrices.map((s) => [
-            { t: s.product, c: ink },
-            { t: s.aprHigh, mono: true },
-            { t: s.may12, mono: true },
-            { t: s.may19, mono: true },
-            { t: s.weekChange, mono: true, c: down },
-            { t: s.note },
-          ])}
-        />
+        <div class="mt-10">
+          <SpotPrices client:visible />
+        </div>
       </Section>
 
       <!-- ───────── 事件 ───────── -->
